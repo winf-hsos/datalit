@@ -5,3 +5,5 @@ This repo contains the code and other resources for the tutorials I publish on [
 # Index
 
 - [What is SQL and what can it do?](/sql/introduction/what_is_sql_and_what_can_it_do)
+    - [Databricks Notebook (HTML)](/sql/introduction/what_is_sql_and_what_can_it_do/What_is_SQL_and_what_can_it_do.html)
+    - [Sex_Offenders.csv](/sql/introduction/what_is_sql_and_what_can_it_do/Sex_Offenders.csv)
