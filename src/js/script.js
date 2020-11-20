@@ -16,6 +16,7 @@ if (typeof icon === "undefined")
     icon = "images/default.svg"
 
 document.querySelector("#logo").setAttribute("src", icon);
+document.querySelector("#logo").removeAttribute("hidden");
 
 
 if (!sheetKey || icon === "images/default.svg" ) {
