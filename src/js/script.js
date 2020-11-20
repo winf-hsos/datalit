@@ -33,15 +33,13 @@ function start(data) {
     for (let c = 0; c < data.length; c++) {
 
         let content = data[c];
-
-        if (content.rows.length === 0) {
-            continue;
-        }
-
         content = parseModulesColumn(content);
-
         // Filter by module
         rows = content.rows.filter((r) => { return r.modules.indexOf(module) >= 0 })
+
+        if (rows.length === 0) {
+            continue;
+        }
 
         let table = document.querySelector("#table_" + content.title);
         document.querySelector("#card_" + content.title).removeAttribute("hidden");
