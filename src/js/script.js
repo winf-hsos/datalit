@@ -78,21 +78,21 @@ function addRow(table, type, rowData) {
 
     if (type === "slides") {
         if (rowData.url.length > 0)
-            tdElement.innerHTML = `<a href="${rowData.url + "view"}" target="_blank">Open</a> &nbsp;&nbsp;&nbsp; <a href="${rowData.url + "export/pdf"}">PDF</a>`;
+            tdElement.innerHTML = `<a href="${rowData.url.trim() + "view"}" target="_blank">Open</a> &nbsp;&nbsp;&nbsp; <a href="${rowData.url.trim() + "export/pdf"}">PDF</a>`;
         else
             tdElement.innerHTML = "-";
     }
 
     if (['notebooks', 'videos', 'articles'].indexOf(type) >= 0) {
         if (rowData.url.length > 0)
-            tdElement.innerHTML = `<a href="${rowData.url}" target="_blank">Open</a>`;
+            tdElement.innerHTML = `<a href="${rowData.url.trim()}" target="_blank">Open</a>`;
         else
             tdElement.innerHTML = "-";
     }
 
     if (type === "datasets") {
         if (rowData.url.length > 0)
-            tdElement.innerHTML = `<a href="${rowData.url}" target="_blank">Download</a>&nbsp;&nbsp;&nbsp;<a href="${rowData.templateurl}" target="_blank">Template</a>`;
+            tdElement.innerHTML = `<a href="${rowData.url.trim()}" target="_blank">Download</a>&nbsp;&nbsp;&nbsp;<a href="${rowData.templateurl.trim()}" target="_blank">Template</a>`;
         else {
             tdElement.innerHTML = "-";
         }
