@@ -4,9 +4,10 @@ body {
 
 a,
 a:hover {
-    color: #009ee3;
+    color: #434343;
+    text-decoration: underline;
 }
 
 .btn-link, .btn-link:hover {
-    color: #009ee3;
+    color: #434343;
 }

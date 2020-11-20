@@ -5,7 +5,9 @@ const module = urlParams.get('module');
 
 const icons = {
     apal: "images/applied_analytics_logo.svg",
-    bigdata: "images/big_data_analytics_logo.svg"
+    bigdata: "images/big_data_analytics_logo.svg",
+    inf: "images/information_management_logo.svg",
+    web: "images/web_engineering_logo.svg",
 }
 
 let icon = module ? icons[module] : "images/default.svg";
