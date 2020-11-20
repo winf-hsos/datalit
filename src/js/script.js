@@ -8,10 +8,12 @@ const icons = {
     bigdata: "images/big_data_analytics_logo.svg"
 }
 
-document.querySelector("#logo").setAttribute("src", icons[module]);
+let icon = module ? icons[module] : "images/default.svg";
+
+document.querySelector("#logo").setAttribute("src", icon);
 
 
-if (!sheetKey) {
+if (!sheetKey || !module) {
     document.querySelector("#key_error").removeAttribute("hidden");
 }
 else {
