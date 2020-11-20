@@ -1,17 +1,30 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const sheetKey = urlParams.get('key');
+const module = urlParams.get('module');
 
-Promise.all([
-    readSheetData(sheetKey, 1),
-    readSheetData(sheetKey, 2),
-    readSheetData(sheetKey, 3),
-    readSheetData(sheetKey, 4),
-    readSheetData(sheetKey, 5)
-]).then(start);
+const icons = {
+    apal: "images/applied_analytics_logo.svg",
+    bigdata: "images/big_data_analytics_logo.svg"
+}
+
+document.querySelector("#logo").setAttribute("src", icons[module]);
+
+
+if (!sheetKey) {
+    document.querySelector("#key_error").removeAttribute("hidden");
+}
+else {
+    Promise.all([
+        readSheetData(sheetKey, 1),
+        readSheetData(sheetKey, 2),
+        readSheetData(sheetKey, 3),
+        readSheetData(sheetKey, 4),
+        readSheetData(sheetKey, 5)
+    ]).then(start);
+}
 
 function start(data) {
-    console.dir(data);
 
     for (let c = 0; c < data.length; c++) {
 
@@ -21,19 +34,24 @@ function start(data) {
             continue;
         }
 
+        content = parseModulesColumn(content);
+
+        // Filter by module
+        rows = content.rows.filter((r) => { return r.modules.indexOf(module) >= 0 })
+
         let table = document.querySelector("#table_" + content.title);
         document.querySelector("#card_" + content.title).removeAttribute("hidden");
 
-        for (let i = 0; i < content.rows.length; i++) {
+        for (let i = 0; i < rows.length; i++) {
 
-            addRow(table, content.title, content.rows[i]);
+            addRow(table, content.title, rows[i]);
         }
     }
 }
 
 function addRow(table, type, rowData) {
 
-    console.dir(rowData);
+    //console.dir(rowData);
 
     let trElement = document.createElement("tr");
 
@@ -75,4 +93,21 @@ function addRow(table, type, rowData) {
     trElement.appendChild(tdElement);
 
     table.appendChild(trElement);
+}
+
+
+function parseModulesColumn(content) {
+
+    for (let i = 0; i < content.rows.length; i++) {
+        let modules = content.rows[i].modules;
+
+
+        if (modules.length > 0) {
+            let modulesArray = modules.split(",");
+            content.rows[i].modules = modulesArray;
+        } else {
+            content.rows[i].modules = [];
+        }
+    }
+    return content;
 }
