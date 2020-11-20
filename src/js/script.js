@@ -2,6 +2,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const sheetKey = urlParams.get('key');
 const module = urlParams.get('module');
+const showLogo = urlParams.get('showLogo');
 
 const icons = {
     apal: "images/applied_analytics_logo.svg",
@@ -16,10 +17,11 @@ if (typeof icon === "undefined")
     icon = "images/default.svg"
 
 document.querySelector("#logo").setAttribute("src", icon);
-document.querySelector("#logo").removeAttribute("hidden");
 
+if (showLogo === null || showLogo === "true")
+    document.querySelector("#logo").removeAttribute("hidden");
 
-if (!sheetKey || icon === "images/default.svg" ) {
+if (!sheetKey || icon === "images/default.svg") {
     document.querySelector("#key_error").removeAttribute("hidden");
 }
 else {
