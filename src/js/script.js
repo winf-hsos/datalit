@@ -12,10 +12,13 @@ const icons = {
 
 let icon = module ? icons[module] : "images/default.svg";
 
+if (typeof icon === "undefined")
+    icon = "images/default.svg"
+
 document.querySelector("#logo").setAttribute("src", icon);
 
 
-if (!sheetKey || !module) {
+if (!sheetKey || icon === "images/default.svg" ) {
     document.querySelector("#key_error").removeAttribute("hidden");
 }
 else {
